@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vignesh L — Python Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --paper: #EEF0E6;
+    --paper-raised: #E6E9DC;
+    --ink: #20241D;
+    --ink-soft: rgba(32,36,29,0.66);
+    --ink-faint: rgba(32,36,29,0.42);
+    --line: rgba(32,36,29,0.16);
+    --pine: #1B2420;
+    --pine-text: #E9EBE2;
+    --pine-text-soft: rgba(233,235,226,0.62);
+    --amber: #B87A2E;
+    --amber-strong: #97621F;
+    --teal: #3E6259;
+    --focus: #3E6259;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #191D17;
+      --paper-raised: #21261E;
+      --ink: #E9EBE2;
+      --ink-soft: rgba(233,235,226,0.68);
+      --ink-faint: rgba(233,235,226,0.45);
+      --line: rgba(233,235,226,0.16);
+      --pine: #0F1310;
+      --pine-text: #E9EBE2;
+      --pine-text-soft: rgba(233,235,226,0.6);
+      --amber: #D79A50;
+      --amber-strong: #E8AD63;
+      --teal: #7FA79A;
+      --focus: #7FA79A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #191D17;
+    --paper-raised: #21261E;
+    --ink: #E9EBE2;
+    --ink-soft: rgba(233,235,226,0.68);
+    --ink-faint: rgba(233,235,226,0.45);
+    --line: rgba(233,235,226,0.16);
+    --pine: #0F1310;
+    --pine-text: #E9EBE2;
+    --pine-text-soft: rgba(233,235,226,0.6);
+    --amber: #D79A50;
+    --amber-strong: #E8AD63;
+    --teal: #7FA79A;
+    --focus: #7FA79A;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-padding-top: calc(70px + env(safe-area-inset-top, 0px));
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--amber-strong); }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nav-name {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    margin: 0; padding: 0;
+    font-size: 0.92rem;
+  }
+  .nav-links a { color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-toggle { display: none; }
+
+  @media (max-width: 620px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 56px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.4vw, 2.9rem);
+    line-height: 1.14;
+    max-width: 13ch;
+  }
+  .hero .role {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+    max-width: 46ch;
+  }
+  .hero .location {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .hero-actions {
+    margin-top: 28px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 3px;
+    font-size: 0.94rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--amber);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--amber-strong); color: #fff; }
+  .btn-ghost {
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .btn-ghost:hover { border-color: var(--ink-faint); color: var(--ink); }
+
+  /* ---------- Terminal ---------- */
+  .terminal {
+    background: var(--pine);
+    color: var(--pine-text);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+  .terminal-bar {
+    display: flex;
+    gap: 7px;
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(233,235,226,0.1);
+  }
+  .terminal-bar span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(233,235,226,0.18);
+  }
+  .terminal-body {
+    padding: 18px 18px 20px;
+    min-height: 190px;
+  }
+  .terminal-line { white-space: pre-wrap; word-break: break-word; }
+  .terminal-prompt { color: var(--pine-text-soft); }
+  .terminal-out { color: var(--amber-strong); }
+  .terminal-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .terminal-form label { color: var(--pine-text-soft); flex-shrink: 0; }
+  .terminal-form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(233,235,226,0.3);
+    color: var(--pine-text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86rem;
+    width: 100%;
+    max-width: 90px;
+    padding: 3px 2px;
+  }
+  .terminal-form input:focus { outline: none; border-bottom-color: var(--amber-strong); }
+  .terminal-form button {
+    background: none;
+    border: 1px solid rgba(233,235,226,0.3);
+    color: var(--pine-text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .terminal-form button:hover { border-color: var(--amber-strong); color: var(--amber-strong); }
+  .terminal-history { margin-top: 10px; display: flex; flex-direction: column; gap: 2px; }
+  .cursor-blink {
+    display: inline-block;
+    width: 7px; height: 1em;
+    background: var(--pine-text);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Sections ---------- */
+  section { padding: 52px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-head h2 { font-size: 1.5rem; }
+  .section-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+  .lede {
+    max-width: 62ch;
+    color: var(--ink-soft);
+  }
+
+  /* Skills */
+  .skill-groups { display: grid; gap: 22px; grid-template-columns: repeat(2, 1fr); margin-top: 8px; }
+  @media (max-width: 620px) { .skill-groups { grid-template-columns: 1fr; } }
+  .skill-group h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink-soft);
+  }
+
+  /* Projects log */
+  .log-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .log-row:last-child { border-bottom: none; }
+  .log-row h3 { font-size: 1.05rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+  .log-row p { margin: 0; color: var(--ink-soft); max-width: 60ch; }
+  .log-tags { margin-top: 4px; }
+
+  /* Certifications */
+  .cert-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .cert-row:last-child { border-bottom: none; }
+  .cert-row .cert-name { font-weight: 600; }
+  .cert-row .cert-meta { color: var(--ink-faint); font-size: 0.86rem; text-align: right; white-space: nowrap; }
+  @media (max-width: 560px) {
+    .cert-row { flex-direction: column; }
+    .cert-row .cert-meta { text-align: left; }
+  }
+
+  /* Education timeline */
+  .timeline { position: relative; margin-top: 8px; padding-left: 26px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+  .tl-item { position: relative; padding-bottom: 26px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -26px; top: 4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .tl-year { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-faint); }
+  .tl-item h3 { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-top: 3px; }
+  .tl-item p { margin: 3px 0 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* Soft skills / strong points */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 620px) { .two-col { grid-template-columns: 1fr; } }
+  .plain-list { list-style: none; margin: 0; padding: 0; }
+  .plain-list li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .plain-list li:last-child { border-bottom: none; }
+  .plain-list li strong { color: var(--ink); font-weight: 600; }
+
+  /* Contact / footer */
+  footer {
+    background: var(--pine);
+    color: var(--pine-text);
+    margin-top: 52px;
+    padding: 56px 0 calc(40px + env(safe-area-inset-bottom, 0px));
+  }
+  footer .wrap { display: flex; flex-direction: column; gap: 22px; }
+  footer h2 { color: var(--pine-text); font-size: 1.5rem; }
+  footer p { color: var(--pine-text-soft); max-width: 50ch; }
+  .contact-list { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+  .contact-list a {
+    color: var(--pine-text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+  }
+  .contact-list a:hover { color: var(--amber-strong); }
+  .foot-note { font-size: 0.8rem; color: var(--pine-text-soft); margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-name">Vignesh L</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="top" style="border-top:none;">
+    <div class="hero-grid">
+      <div>
+        <h1>Vignesh L</h1>
+        <p class="role">A Computer Applications graduate learning Python by building small, working programs — and looking for an internship to build bigger ones.</p>
+        <p class="location">Kancheepuram, Tamil Nadu</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:vickyvignes480@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="#projects">See my projects</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="terminal" aria-label="Interactive demo of an odd or even number checker">
+          <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div class="terminal-line terminal-prompt">$ python3 even_or_odd.py</div>
+            <div class="terminal-history" id="termHistory"></div>
+            <form class="terminal-form" id="termForm">
+              <label for="termInput">Enter a number:</label>
+              <input id="termInput" type="number" inputmode="numeric" required>
+              <button type="submit">Run</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="about">
+    <div class="section-head"><h2>About</h2><div class="rule"></div></div>
+    <p class="lede">I recently finished a Bachelor of Computer Applications and picked up Python fundamentals — data types, loops, functions — alongside HTML basics and a solid handle on Excel and PowerPoint from an earlier course. I like working things out from first principles, and I'm looking for a Python internship where I can turn that habit into shipped code.</p>
+  </section>
+
+  <section class="wrap" id="skills">
+    <div class="section-head"><h2>Skills</h2><div class="rule"></div></div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="tag-row">
+          <span class="tag">Python — data types</span>
+          <span class="tag">Python — loops</span>
+          <span class="tag">Python — functions</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Office &amp; tools</h3>
+        <div class="tag-row">
+          <span class="tag">Excel — VLOOKUP</span>
+          <span class="tag">Excel — pivot tables</span>
+          <span class="tag">PowerPoint</span>
+          <span class="tag">Adobe Photoshop</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>General</h3>
+        <div class="tag-row">
+          <span class="tag">Computer systems</span>
+          <span class="tag">Video editing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Working style</h3>
+        <div class="tag-row">
+          <span class="tag">Communication</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Problem-solving</span>
+          <span class="tag">Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="projects">
+    <div class="section-head"><h2>Projects</h2><div class="rule"></div></div>
+    <div class="log">
+      <div class="log-row">
+        <h3>Calculator</h3>
+        <p>A Python program that handles basic arithmetic — the project the terminal above is styled after.</p>
+        <div class="log-tags tag-row"><span class="tag">Python</span></div>
+      </div>
+      <div class="log-row">
+        <h3>Odd or even checker</h3>
+        <p>Takes a number as input and reports whether it's odd or even — try it in the terminal at the top of this page.</p>
+        <div class="log-tags tag-row"><span class="tag">Python</span></div>
+      </div>
+      <div class="log-row">
+        <h3>Personal website</h3>
+        <p>A basic website built from scratch to learn page structure and layout.</p>
+        <div class="log-tags tag-row"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="certifications">
+    <div class="section-head"><h2>Certifications</h2><div class="rule"></div></div>
+    <div class="cert-list">
+      <div class="cert-row">
+        <span class="cert-name">Certificate in Python Programming</span>
+      </div>
+      <div class="cert-row">
+        <span class="cert-name">Computer Software Certificate — Mahakavi Bharathiyar Community College (Sevalaya)</span>
+        <span class="cert-meta">MS Word · MS Excel · MS PowerPoint · Photoshop<br>Jul 2022 – Oct 2022</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="education">
+    <div class="section-head"><h2>Education</h2><div class="rule"></div></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2021 – 2024</div>
+        <h3>Bachelor of Computer Applications</h3>
+        <p>Sri Sankara Arts and Science College, Enathur — CGPA 8.07</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2020 – 2021</div>
+        <h3>Higher Secondary Education</h3>
+        <p>Don Bosco Hr. Sec. School, Pannur</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2018 – 2019</div>
+        <h3>SSLC</h3>
+        <p>Don Bosco Matriculation Hr. Sec. School, Pannur</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="strengths">
+    <div class="section-head"><h2>Strong points</h2><div class="rule"></div></div>
+    <div class="two-col">
+      <ul class="plain-list">
+        <li><strong>Interpersonal skills</strong> — energetic and enthusiastic in a team</li>
+        <li><strong>Communication</strong> — comfortable working across different groups</li>
+      </ul>
+      <ul class="plain-list">
+        <li><strong>Quick learner</strong> — flexible in new environments</li>
+        <li><strong>Adaptable</strong> — open to picking up new tools and tasks</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>Open to Python internship opportunities — reach out by email or phone.</p>
+    <div class="contact-list">
+      <a href="mailto:vickyvignes480@gmail.com">vickyvignes480@gmail.com</a>
+      <a href="tel:+919360288283">+91 93602 88283</a>
+      <span style="color:var(--pine-text-soft); font-family:'IBM Plex Mono',monospace; font-size:0.95rem;">Kancheepuram, Tamil Nadu</span>
+    </div>
+    <p class="foot-note">Portfolio template — edit the sections above to keep this current as new projects and skills are added.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var form = document.getElementById('termForm');
+  var input = document.getElementById('termInput');
+  var history = document.getElementById('termHistory');
+
+  function addLine(text, cls) {
+    var div = document.createElement('div');
+    div.className = 'terminal-line ' + (cls || '');
+    div.textContent = text;
+    history.appendChild(div);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var val = input.value.trim();
+    if (val === '') return;
+    var n = Number(val);
+    addLine('> ' + val, 'terminal-prompt');
+    if (!Number.isFinite(n) || !Number.isInteger(n)) {
+      addLine('Please enter a whole number.', 'terminal-out');
+    } else {
+      addLine(val + ' is ' + (n % 2 === 0 ? 'even' : 'odd') + '.', 'terminal-out');
+    }
+    input.value = '';
+    input.focus();
+    // keep history from growing unbounded
+    while (history.children.length > 8) {
+      history.removeChild(history.firstChild);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
